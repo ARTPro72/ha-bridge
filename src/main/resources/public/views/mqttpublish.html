@@ -4,6 +4,8 @@
 	<li role="presentation"><a href="#!/logs">Logs</a></li>
 	<li ng-if="bridge.showVera" role="presentation"><a href="#!/veradevices">Vera Devices</a></li>
 	<li ng-if="bridge.showVera" role="presentation"><a href="#!/verascenes">Vera Scenes</a></li>
+	<li ng-if="bridge.showFibaro" role="presentation"><a href="#!/fibarodevices">Fibaro Devices</a></li>
+	<li ng-if="bridge.showFibaro" role="presentation"><a href="#!/fibaroscenes">Fibaro Scenes</a></li>
 	<li ng-if="bridge.showHarmony" role="presentation"><a href="#!/harmonyactivities">Harmony Activities</a></li>
 	<li ng-if="bridge.showHarmony" role="presentation"><a href="#!/harmonydevices">Harmony Devices</a></li>
 	<li ng-if="bridge.showNest" role="presentation"><a href="#!/nest">Nest</a></li>
@@ -43,6 +45,8 @@
 				<th sortable-header col="ip">IP</th>
 				<th>Topic</th>
 				<th>Content</th>
+				<th>QoS</th>
+				<th>Retain</th>
 				<th>Build Actions</th>
 			</tr>
 		</thead>
@@ -59,8 +63,16 @@
 							ng-model="mqttcontent" placeholder="The MQTT Message Content"></textarea>
 			</td>
 			<td>
+				<input type="number" rows="1" class="form-control" id="mqtt-qos"
+					   ng-model="mqttqos" placeholder="1"/>
+			</td>
+			<td>
+				<input type="checkbox" rows="1" class="form-control" id="mqtt-retain"
+					   ng-model="mqttretain"/>
+			</td>
+			<td>
 				<button class="btn btn-success" type="submit"
-					ng-click="buildMQTTPublish(mqttbroker, mqtttopic, mqttcontent)">Build
+					ng-click="buildMQTTPublish(mqttbroker, mqtttopic, mqttcontent, mqttqos, mqttretain)">Build
 					publish Message</button>
 			</td>
 		</tr>
